@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class NavigationTest {
 
@@ -23,9 +24,18 @@ public class NavigationTest {
         Thread.sleep(3000);
 
         WebElement fieldname = driver.findElement(By.cssSelector("#name"));
-        fieldname.sendKeys("Test");
-        Thread.sleep(3000);
+        fieldname.sendKeys("Julio");
 
+        WebElement fieldLastName = driver.findElement(By.cssSelector("#last-name"));
+        fieldLastName.sendKeys("Rodr");
+
+        WebElement fieldAge = driver.findElement(By.cssSelector("#age"));
+        fieldAge.sendKeys("24");
+
+        Select selectCountry = new Select(driver.findElement(By.cssSelector("#country")));
+        selectCountry.selectByVisibleText("Mexico");
+
+        Thread.sleep(3000);
         driver.quit();
     }
 
