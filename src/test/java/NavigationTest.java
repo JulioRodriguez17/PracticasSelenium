@@ -128,9 +128,42 @@ public class NavigationTest {
         fieldname.sendKeys(name);
     }
 
+    @Test
+    public void searchItem() throws InterruptedException {
 
+        driver.get("https://www.mercadolibre.com/");
 
+        WebElement countryLink = driver.findElement(By.cssSelector("#MX"));
+        countryLink.click();
 
+        WebElement searchBar = driver.findElement(By.cssSelector("#cb1-edit"));
+        searchBar.sendKeys("Iphone 17");
+
+        WebElement searchButton = driver.findElement(By.cssSelector("body > header > div > div.nav-area.nav-top-area.nav-center-area > form > button"));
+        searchButton.click();
+
+        WebElement itemResult = driver.findElement(By.cssSelector("#root-app > div > div.ui-search-main.ui-search-main--without-header.ui-search-main--only-products > section > ol > li:nth-child(1) > div > div > div.poly-card__content > h3 > a"));
+        itemResult.click();
+
+        WebElement itemPrice = driver.findElement(By.cssSelector("#price > div > div.ui-pdp-price__main-container > div.ui-pdp-price__second-line > span > span > span.andes-money-amount__fraction"));
+        String itemPriceAsString = itemPrice.getText();
+        System.out.println("El precio del elemento es: "+itemPriceAsString);
+
+        Thread.sleep(3000);
+    }
+
+    @Test
+    public void login() throws InterruptedException {
+       driver.get("file:\\D:\\Badak\\Curso Selenium\\mini-web-apps\\login\\login.html");
+
+       //WebElement username = driver.findElement(By.id("username"));
+       //WebElement username = driver.findElement(By.name("username"));
+       // WebElement username = driver.findElement(By.xpath("//input[@id=\"username\"]"));
+        WebElement username = driver.findElement(By.cssSelector("input#username"));
+       username.sendKeys("user");
+       Thread.sleep(3000);
+
+    }
 }
 
 
